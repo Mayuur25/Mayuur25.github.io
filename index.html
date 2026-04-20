@@ -1,657 +1,849 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Mayur Bhoyar Portfolio</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mayur Bhoyar — Data Engineer</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">  <style>
+    :root {
+      --bg: #080c10;
+      --surface: #0e1520;
+      --surface2: #141d2b;
+      --border: rgba(255,255,255,0.07);
+      --accent: #ffbd39;
+      --accent2: #3ecfcf;
+      --text: #e8edf5;
+      --muted: #8494a9;
+      --radius: 12px;
+    }
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <link rel="stylesheet" href="css/aos.css">
+    html { scroll-behavior: smooth; }
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 5vw;
+      background: rgba(8,12,16,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
 
-<style>
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 5vw 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(245,166,35,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,166,35,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(62,207,207,0.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(245,166,35,0.06) 0%, transparent 70%);
+      bottom: 0; left: 10%;
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: 900px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent2);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 24px; height: 1px;
+      background: var(--accent2);
+    }
+    h1.hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+    h1.hero-title .accent { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    #typing-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 1rem;
+      color: var(--accent2);
+      min-height: 1.5rem;
+      display: block;
+      margin-bottom: 2rem;
+    }
+    #typing-text::after {
+      content: '|';
+      animation: blink 0.8s step-end infinite;
+      color: var(--accent);
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 6px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #ffc048; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,166,35,0.3); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-2px); }
 
-/*======================================
-//--//-->   ABOUT
-======================================*/
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+      gap: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 0;
+    }
+    .stat-item {
+      padding: 2rem 5vw;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      display: block;
+      font-family: 'Syne', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
 
-.about-mf .box-shadow-full {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+    /* ─── SECTIONS ─── */
+    section { padding: 6rem 5vw; }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 20px; height: 1px; background: var(--accent);
+    }
+    h2.section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-desc { color: var(--muted); max-width: 540px; font-size: 1.05rem; }
 
-.about-mf .about-img {
-  margin-bottom: 2rem;
-}
+    /* ─── ABOUT ─── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start; margin-top: 4rem;
+    }
+    @media(max-width:768px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-wrap img {
+      width: 100%;
+      border-radius: var(--radius);
+      display: block;
+      filter: grayscale(20%);
+    }
+    .about-image-accent {
+      position: absolute;
+      inset: -8px;
+      border: 1px solid var(--accent);
+      border-radius: calc(var(--radius) + 8px);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .about-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .detail-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+    }
+    .detail-chip .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+    .detail-chip .value { font-size: 0.9rem; color: var(--text); }
 
-.about-mf .about-img img {
-  margin-left: 10px;
-}
+    /* SKILLS */
+    .skills-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .skill-row { }
+    .skill-meta { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
+    .skill-name { font-size: 0.9rem; color: var(--text); }
+    .skill-pct { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--accent); }
+    .skill-track {
+      height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent));
+      border-radius: 2px;
+      transition: width 1.5s cubic-bezier(0.4,0,0.2,1);
+      width: 0;
+    }
 
+    /* ─── EXPERIENCE ─── */
+    .timeline { position: relative; margin-top: 4rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3.5rem 3rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -5px; top: 6px;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(245,166,35,0.15);
+    }
+    .timeline-item.current::before {
+      background: var(--accent2);
+      box-shadow: 0 0 0 4px rgba(62,207,207,0.15), 0 0 12px rgba(62,207,207,0.4);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 4px rgba(62,207,207,0.15), 0 0 12px rgba(62,207,207,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(62,207,207,0.08), 0 0 20px rgba(62,207,207,0.5); }
+    }
+    .timeline-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-role {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-company {
+      font-size: 0.9rem;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+    .timeline-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .timeline-item.current .timeline-card {
+      border-color: rgba(62,207,207,0.2);
+      background: rgba(62,207,207,0.03);
+    }
+    .timeline-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .timeline-card li {
+      padding-left: 1.2rem;
+      position: relative;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .timeline-card li::before {
+      content: '→';
+      position: absolute; left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+    .timeline-item.current .timeline-card li::before { color: var(--accent2); }
+    .current-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent2);
+      background: rgba(62,207,207,0.1);
+      border: 1px solid rgba(62,207,207,0.25);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      margin-left: 0.8rem;
+      vertical-align: middle;
+    }
+    .current-badge::before {
+      content: '';
+      display: block; width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent2);
+      animation: blink 1s step-end infinite;
+    }
 
-.skill-mf .progress {
-  /* background-color: #cde1f8; */
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
-}
+    /* ─── EDUCATION ─── */
+    .edu-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 1.5rem; margin-top: 4rem;
+    }
+    .edu-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .edu-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .edu-date {
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .edu-degree {
+      font-family: 'Syne', sans-serif; font-size: 1.15rem;
+      font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.02em;
+    }
+    .edu-school { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+    .edu-grade {
+      display: inline-block;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.25rem 0.6rem; color: var(--accent2);
+    }
 
-.skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: #ffbd39;
-}
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 1.5rem; margin-top: 4rem;
+    }
+    .project-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .project-img {
+      height: 180px; background-size: cover; background-position: center;
+      position: relative; overflow: hidden;
+    }
+    .project-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(8,12,16,0.8));
+    }
+    .project-tag {
+      position: absolute; top: 1rem; left: 1rem; z-index: 1;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: rgba(8,12,16,0.8); color: var(--accent);
+      border: 1px solid rgba(245,166,35,0.3); border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+    }
+    .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-title {
+      font-family: 'Syne', sans-serif; font-size: 1rem;
+      font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.01em;
+      color: var(--text); text-decoration: none;
+    }
+    .project-title:hover { color: var(--accent); }
+    .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.6; flex: 1; }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      color: var(--accent2); text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1.2rem;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.6rem; }
 
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 1rem; margin-top: 4rem;
+    }
+    .contact-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .contact-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+    .contact-icon {
+      font-size: 1.8rem; margin-bottom: 1rem; display: block;
+    }
+    .contact-label {
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .contact-value { color: var(--text); font-size: 0.95rem; }
+    .contact-value a { color: var(--accent2); text-decoration: none; }
+    .contact-value a:hover { color: var(--accent); }
 
-/* Animation styles */
-#typing-animation {
-  position: relative;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
-}
+    .social-row {
+      display: flex; justify-content: center; gap: 1.5rem;
+      margin-top: 3rem; flex-wrap: wrap;
+    }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); text-decoration: none;
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 0.6rem 1.2rem;
+      transition: all 0.2s;
+    }
+    .social-link:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem 5vw;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem;
+      color: var(--muted);
+      flex-wrap: wrap; gap: 1rem;
+    }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
+    /* ─── REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
 
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
+    /* ─── MOBILE NAV ─── */
+    @media(max-width:640px) {
+      .nav-links { display: none; }
+      .hero-cta { flex-direction: column; }
+      .about-details { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
 
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">Mayur<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-/* project image zoom effect */
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Based in India · Open to Opportunities</p>
+    <h1 class="hero-title">Hi, I'm<br><span class="accent">Mayur Bhoyar</span></h1>
+    <span id="typing-text"></span>
+    <p class="hero-sub">Data Engineer with 3+ years of experience building scalable pipelines, data platforms, and analytics solutions across US Healthcare and enterprise domains.</p>
+    <div class="hero-cta">
+      <a href="https://www.linkedin.com/in/mayur-bhoyar/" class="btn btn-primary" target="_blank">Connect on LinkedIn</a>
+      <a href="https://github.com/Mayuur25" class="btn btn-outline" target="_blank">View GitHub →</a>
+      <a href="https://drive.google.com/file/d/1xW1aKFP_S9o6Ec_7uN99ftZJfQtdp9HJ/view?usp=drive_link" class="btn btn-outline" target="_blank">Download CV</a>
+    </div>
+  </div>
+</section>
 
-.zoom-effect {
-  overflow: hidden;
-  transition: transform 0.3s ease-out;
-}
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-number">3+</span><span class="stat-label">Years Experience</span></div>
+  <div class="stat-item"><span class="stat-number">15+</span><span class="stat-label">Projects Built</span></div>
+  <div class="stat-item"><span class="stat-number">95%</span><span class="stat-label">Data Accuracy</span></div>
+  <div class="stat-item"><span class="stat-number">41</span><span class="stat-label">YouTube Videos</span></div>
+</div>
 
-.zoom-effect:hover {
-  transform: scale(1.1);
-}
-
-
-</style>
-
-
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-	  
-	  
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Mayur Bhoyar</a>
-	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav nav ml-auto">
-	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
-	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
-	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
-	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-	  <section id="home-section" class="hero">
-		  <div class="home-slider  owl-carousel">
-	       <div class="slider-item ">
-	      	<div class="overlay"></div>
-	         <div class="container">
-	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bag_11.png);">
-	          	 <div class="overlay"></div>
-	          	</div>
-		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-		          	<div class="text">
-		          		<span class="subheading">Hello!</span>
-			            <h1 class="mb-4 mt-3">I'm <span>Mayur</span></h1>
-
-						<!-- Element to contain animated typing -->
-						<span id="typing-animation"></span>
-
-						<script>
-
-						// Initialize the typing animation
-						const typingAnimationElement = document.getElementById('typing-animation');
-
-						// Create an array of typing text
-						const typingTexts = [
-						'MSc Adv Comp Science   ',
-						'Data Analyst   ',	
-						'Data Engineer  ',
-						'YouTuber  ',
-						];
-
-						// Create a function to display the typing animation for a given text
-						function playTypingAnimation(text) {
-						// Loop through each character and add it to the element
-						for (let i = 0; i < text.length; i++) {
-							setTimeout(() => {
-							typingAnimationElement.textContent += text[i];
-							}, i * 200); // Increase the delay to slow down the typing animation
-						}
-
-						// Once the animation is complete, reset the text and start over
-						setTimeout(() => {
-							typingAnimationElement.textContent = '';
-							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-						}, text.length * 200);
-						}
-
-						// Start the typing animation loop
-						playTypingAnimation(typingTexts[0]);
-
-						</script>
-
-						<br>
-						<br>
-			            <h2>A Data Enthusiast</h2>
-						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
-						<!-- <br> -->
-			            <p><a href="https://www.youtube.com/channel/UCESXZF9cS_hm_vHO87zMyqQ" class="btn btn-primary py-3 px-4">YouTube</a> 
-							<a href="https://github.com/Mayuur25" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
-		            </div>
-		          </div>
-	        	</div>
-	        </div>
-	      </div>
-		</div>
-    </section>
-
-
-
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-    	<div class="container">
-			<div class="row">
-				<div class="row d-flex align-items-stretch">
-				<!-- <div class="row d-flex"> -->
-					<div class="col-md-6 col-lg-5 d-flex">
-						<div class="img-about img d-flex align-items-stretch">
-							<div class="overlay">
-								<div class="row">
-									<div class="col-sm-6 col-md-5">
-									  <div class="about-img">
-										<img src="images/about-me.png" class="img-fluid rounded b-shadow-a" alt="">
-									  </div>
-									</div>
-									<!-- Details next to profile image -->
-									<div class="col-sm-6 col-md-7">
-									  <div class="about-info">
-										<p><span class="title-s">Name: </span> <span>Mayur Bhoyar</span></p>
-										<p><span class="title-s">Job Role: </span> <span>Data Engineer</span></p>
-										<p><span class="title-s">Experience: </span> <span>3+ Years</span></p>
-										<p><span class="title-s">Address: </span> <span>India</span></p>
-									  </div>
-									</div>
-								  </div>
-
-								<div class="skill-mf">
-									<p class="title-s">Skills</p>
-									<span>SQL</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="95" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Python</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Data Visualization</span> <span class="pull-right">90%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Azure Databricks</span> <span class="pull-right">70%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="85" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-									
-									<span>Deep Learning</span> <span class="pull-right">80%</span>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-											aria-valuemax="100"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-						<div class="row justify-content-start pb-3">
-							<div class="col-md-12 heading-section ftco-animate">
-								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
-								
-								<p>With over 3+ years of comprehensive experience in the field of data science & analytics. Currently working as a Data Engineer at Noida, India. Accompanied by a Master's degree in MSc Advanced Computer Science from University of Leeds, UK. 
-									Proficient in Data analysis, Data engineering, Deep learning, Azure, &amp; Deep learning. 
-									Demonstrated success in leading impactful projects and willingness to learn more knowledge.</p>
-								<ul class="about-info mt-4 px-md-0 px-2">
-									<li class="d-flex"><span>Profile:</span> <span>Data Science &amp; Analytics</span></li>
-									<!-- <li class="d-flex"><span>Domain:</span> <span>Retail, Ecommerce, BFSI &amp; Digital Marketing</span></li> -->
-									<li class="d-flex"><span>Education:</span> <span>MSc Advanced Computer Science</span></li>
-									<li class="d-flex"><span>Language:</span> <span>English, Hindi, Marathi, German</span></li>
-									<li class="d-flex"><span>BI Tools:</span> <span>Microsoft Power BI &amp; Tableau</span></li>
-									<li class="d-flex"><span>Other Skills:</span> <span>Cloud, PySpark, Excel, Git, JIRA, Snowflake &amp; ETL</span></li>
-									<li class="d-flex"><span>Domain:</span> <span>US Healthcare</span></li>
-									<li class="d-flex"><span>Interest:</span> <span>Traveling, Cooking, Valorant</span></li>
-									
-								</ul>
-							</div>
-						</div>
-
-
-						<div class="counter-wrap ftco-animate d-flex mt-md-3">
-							<div class="text">
-								<p class="mb-4">
-									<span class="number" data-number="15">0</span> <span>+</span>
-									<span>&nbsp; Projects completed</span>
-								</p>
-								<p><a href="https://www.linkedin.com/in/mayur-bhoyar/" class="btn btn-primary py-3 px-3">LinkedIn</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </section>
-
-
-
-	
-    <section class="ftco-section ftco-no-pb" id="resume-section">
-    	<div class="container">
-    		<div class="row justify-content-center pb-5">
-          <div class="col-md-10 heading-section text-center ftco-animate">
-          	<h1 class="big big-2">Resume</h1>
-            <h2 class="mb-4">Resume</h2>
-            <p>Seasoned Data Engineer with 3+ years of experience driving business strategies through data-driven insights. Proven expertise in data science, statistical analysis, Deep learning algorithms and project management.</p>
-          </div>
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label reveal">About</p>
+  <h2 class="section-title reveal">The Person Behind the Data</h2>
+  <div class="about-grid">
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="about-image-wrap">
+        <img src="images/about-me.png" alt="Mayur Bhoyar" onerror="this.style.display='none'">
+        <div class="about-image-accent"></div>
+      </div>
+      <div class="about-details">
+        <div class="detail-chip"><div class="label">Role</div><div class="value">Senior Data Engineer</div></div>
+        <div class="detail-chip"><div class="label">Company</div><div class="value">ZS Associates</div></div>
+        <div class="detail-chip"><div class="label">Domain</div><div class="value">US Healthcare</div></div>
+        <div class="detail-chip"><div class="label">Location</div><div class="value">India</div></div>
+        <div class="detail-chip"><div class="label">Education</div><div class="value">MSc Adv. CS · Leeds</div></div>
+        <div class="detail-chip"><div class="label">Languages</div><div class="value">EN, HI, MR, DE</div></div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.2s">
+      <p style="color:var(--muted);line-height:1.9;margin-bottom:1.5rem;font-size:1.05rem;">
+        With over 3+ years of comprehensive experience in data science &amp; analytics, I'm currently a Senior Data Engineer at ZS Associates, Gurgaon. I hold a Master's degree in MSc Advanced Computer Science from the University of Leeds, UK.
+      </p>
+      <p style="color:var(--muted);line-height:1.9;margin-bottom:2rem;font-size:1.05rem;">
+        Proficient in building data pipelines, deep learning, cloud infrastructure (AWS &amp; Azure), and domain expertise in US Healthcare data. I love solving hard data problems and sharing knowledge through my YouTube channel.
+      </p>
+      <div class="skills-list">
+        <div class="skill-row">
+          <div class="skill-meta"><span class="skill-name">SQL</span><span class="skill-pct">90%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
         </div>
-
-		<div class="row">
-			<h1 class="big-4">Experience</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-		<div class="row">
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">2021-2022</span>
-						<h2>Data Analyst</h2>
-						<span class="position">Tata Consultancy Services</span>
-						<p class="mt-4">TCS is an Indian multinational information technology (IT) services and consulting company. 
-							<ul>
-								<li>Spearheaded dynamic Power BI reports and dashboards, leveraging KPIs and boost operational efficiency by 5%</li>
-								<li>Developed standalone Java applications for batch processes and reports as per the finance industry standards</li>
-								<li>Conducted over 15 SITs and UATs with client and third-party system admins</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-
-				<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">2022-2023</span>
-						<h2>MSc Advanced Computer Science</h2>
-						<span class="position">Student</span>
-						<p class="mt-4">The University of Leeds is a prestigious research-intensive institution located in Leeds, UK, with a QS ranking of 75th in the world.
-							<ul>
-								<li>Modules: Algorithms, Knowledge Representation and Reasoning, Cloud Computing, Data Science, Programming for Data Science, .</li>
-								<li>Delivered multiple projects on analytical tools like SQL, MS Excel, Power BI, Deep Learning and Python.</li>
-								<li>MSc Dissertation on Empirical research between deep learning models for its ability to accurately identify and classify brain tumor in the brain MRI scans. Used models like U-Net, Attention U-Net and Deeplabv3</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-			</div>
-<div class="col-md-6">
-					<div class="resume-wrap ftco-animate">
-						<span class="date">2024-Present</span>
-						<h2>Data Engineer</h2>
-						<span class="position">Innovaccer</span>
-						<p class="mt-4">
-Innovaccer is a healthcare technology company that uses data-driven solutions to unify healthcare data and improve patient outcomes through its Health Cloud platform. 
-							<ul>
-								<li>Developed and managed data processing and reporting functions using Python, SQL, Snowflake, and Amazon
-S3, ensuring efficient handling of big data and accurate performance reporting on US Healthcare data</li>
-								<li>Created and validated complex queries on big data databases, executed data manipulation tasks, and developed SQL
-configurations for quality measures, enhancing data integrity and consistency</li>
-
-								<li>Built and optimized data pipelines to process large volumes of data, conducted rigorous data validation and
-quality checks, and performed data migration across different environments</li>
-								<li>Successfully migrated huge of data from PostgreSQL to Snowflake across 3 US markets, building 15 optimized
-data pipelines, and completing the migration 84% faster than the estimated timeline</li>
-								<li>Collaborated with cross-functional teams to analyze mismatched results, identify key issues, and resolve data
-discrepancies, providing support and solutions to other teams for data validation and related challenges</li>
-							</ul>
-						</p>
-					</div>
-
-				</div>
-		<br>
-		<br>
-
-		<div class="row">
-			<h1 class="big-4">Education</h1>
-			<div class="underline"></div>
-		</div>
-		<br>
-		
-			<div class="row">
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2015-2019</span>
-    					<h2>Bachelor of Engineering</h2>
-    					<span class="position">University of Pune</span>
-    					<p class="mt-4">Grade: First class.</p>
-    				</div>
-    			</div>
-
-    			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
-    					<span class="date">2022-2023</span>
-    					<h2>Masters</h2>
-    					<span class="position">University of Leeds, United Kingdom</span>
-    					<p class="mt-4">Grade: Merit.</p>
-    				</div>
-				</div>
-    		</div>
-
-    		<div class="row justify-content-center mt-5">
-    			<div class="col-md-6 text-center ftco-animate">
-    				<p><a href="https://drive.google.com/file/d/1xW1aKFP_S9o6Ec_7uN99ftZJfQtdp9HJ/view?usp=drive_link" class="btn btn-primary py-4 px-5">Download CV</a></p>
-    			</div>
-    		</div>
-    	</div>
-    </section>
-
-   
-
-    <section class="ftco-section" id="project-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-5">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Projects</h1>
-            <h2 class="mb-4">Projects</h2>
-            <p>Below are the sample Data Analytics projects on SQL, Python, Power BI & Deep Learning.</p>
-          </div>
+        <div class="skill-row">
+          <div class="skill-meta"><span class="skill-name">Python &amp; PySpark</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
         </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/Mayuur25/Adventure-Works" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Mayuur25/Adventure-Works">Adventure-Works Data Analysis using SQL, Power BI</a></h3>
-                <p>Analyzed data of this fictitious company by connecting and shaping data in Power Query, built a relational model and added calculate fields with DAX measures.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <a href="https://github.com/Mayuur25/Amazon-Sales-Power-BI" class="block-20 zoom-effect" style="background-image: url('images/8.png');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Mayuur25/Amazon-Sales-Power-BI">Amazon sales Data Analysis using Power BI</a></h3>
-                <p>Performed exploratory data analysis on Amazon sales data using Power BI to improve the product insights .</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry">
-              <a href="https://github.com/Mayuur25/Agriculture-data-GeoMaps" class="block-20 zoom-effect" style="background-image: url('images/a.jpg');">
-              </a>
-              <div class="text mt-3 float-right d-block">
-
-                <h3 class="heading"><a href="https://github.com/Mayuur25/Agriculture-data-GeoMaps">Agriculture Heatmap using python</a></h3>
-                <p>Designed a Python powered Geo-Heatmap. To analyze emimssions of gases across countries in agricultue. </p>
-              </div>
-            </div>
-          </div>
+        <div class="skill-row">
+          <div class="skill-meta"><span class="skill-name">Data Visualization (Power BI / Tableau)</span><span class="skill-pct">90%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
         </div>
-	<br>
-		<!-- added justify-content-center to center align the last two projects -->
-		<div class="row d-flex justify-content-center">  
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/Mayuur25/Deep-Learning-Image-Segmentation-Dissertation" class="block-20 zoom-effect" style="background-image: url('images/br.png');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/Mayuur25/Deep-Learning-Image-Segmentation-Dissertation">Image Segmentation using Deep Learning</a></h3>
-				  <p>Empirical research between deep learning models for its ability to accurately identify and classify brain tumor in the brain MRI scans. Models U-Net, Attention U-Net and Deeplabv3</p>
-				</div>
-			  </div>
-			</div>
-			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
-				<a href="https://github.com/Mayuur25/Amazon-Review-NLP-ML-Project" class="block-20 zoom-effect" style="background-image: url('images/am.png');">
-				</a>
-				<div class="text mt-3 float-right d-block">
-  
-				  <h3 class="heading"><a href="https://github.com/Mayuur25/Amazon-Review-NLP-ML-Project">Amazon Review NLP-ML Project</a></h3>
-				  <p>In this project i am trying to use NLP, ML concepts on Amazon reviews using various ML based model like XGBoost, Decision tree classifier and random forest.</p>
-				</div>
-			  </div>
-			</div>
-		 </div>
-	  </div>
-    </section>
-
-	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
-      <!-- <div class="container">
-		<div class="row d-md-flex align-items-center">
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="20">0</strong>
-                <span>Achievements</span>
-              </div>
-            </div>
-          </div> -->
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="15">0</strong>
-                <span>Projects</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="41">0</strong>
-                <span>Youtube Videos</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-            <div class="block-18">
-              <div class="text">
-                <strong class="number" data-number="500">0</strong>
-                <span>Cups of coffee</span>
-              </div>
-            </div>
-          </div>
+        <div class="skill-row">
+          <div class="skill-meta"><span class="skill-name">AWS / Azure Databricks</span><span class="skill-pct">75%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="75"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-meta"><span class="skill-name">Deep Learning</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-meta"><span class="skill-name">Snowflake / ETL</span><span class="skill-pct">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
         </div>
       </div>
-	
-	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
-			<!-- <div class="container"> -->
-				<div class="row justify-content-center">
-					<div class="col-md-7 ftco-animate text-center">
-						<h2>More projects on<span> Github  </span> </h2>
-						<div class="heading"> <h4> I love to solve problems &amp; learn new things </h4>
-						<br>
-						<p><a href="https://github.com/Mayuur25" class="btn btn-primary py-3 px-5">GitHub</a></p>
-						</div>
-					</div>
-				</div>
-			<!-- </div> -->
-		</div>
-	</section>
+    </div>
+  </div>
+</section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">Experience</p>
+  <h2 class="section-title reveal">Where I've Worked</h2>
+  <div class="timeline">
 
+    <!-- ZS Associates (current) -->
+    <div class="timeline-item current reveal">
+      <div class="timeline-date">October 2025 – Present</div>
+      <div class="timeline-role">Senior Data Engineer <span class="current-badge">Current</span></div>
+      <div class="timeline-company">ZS Associates · Gurgaon, India</div>
+      <div class="timeline-card">
+        <ul>
+          <li>Contributed to production development for the OLI (Opinion Leader Identification) platform in the US healthcare domain, enabling pharma companies to identify highly influential HCPs.</li>
+          <li>Developed and maintained AWS Airflow DAGs to orchestrate end-to-end data pipelines, ensuring reliable ingestion, transformation, and delivery of multi-source healthcare and digital engagement data.</li>
+          <li>Built scalable data pipelines using Python and PySpark to process millions of records per run, integrating data from APIs, research publications, and social media platforms including LinkedIn, YouTube, Instagram, and TikTok.</li>
+          <li>Performed advanced data transformations and validations via optimized SQL queries through CLI, improving data quality and achieving 95%+ accuracy across downstream analytical datasets.</li>
+          <li>Implemented monitoring, logging, and failure-handling mechanisms in Airflow, improving pipeline stability and reducing production incidents by 30%.</li>
+        </ul>
+      </div>
+    </div>
 
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-      <div class="container">
-      	<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-            <h1 class="big big-2">Contact</h1>
-            <h2 class="mb-4">Contact Me</h2>
-            <p>Below are the details to reach out to me!</p>
-          </div>
-        </div>
+    <!-- Innovaccer -->
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2024 – October 2025</div>
+      <div class="timeline-role">Data Engineer</div>
+      <div class="timeline-company">Innovaccer · Noida, India</div>
+      <div class="timeline-card">
+        <ul>
+          <li>Developed and managed data processing and reporting functions using Python, SQL, Snowflake, and Amazon S3, ensuring efficient handling of big data on US Healthcare datasets.</li>
+          <li>Created and validated complex queries on big data databases, developed SQL configurations for quality measures, enhancing data integrity and consistency.</li>
+          <li>Built and optimized data pipelines, conducted rigorous data validation and quality checks, and performed data migration across environments.</li>
+          <li>Successfully migrated data from PostgreSQL to Snowflake across 3 US markets, building 15 optimized pipelines — completing the migration 84% faster than estimated.</li>
+          <li>Collaborated with cross-functional teams to resolve data discrepancies and provide solutions for data validation challenges.</li>
+        </ul>
+      </div>
+    </div>
 
-        <div class="row d-flex contact-info mb-5">
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-map-signs"></span>
-          		</div>
-          		<h3 class="mb-4">Address</h3>
-	            <p>India</p>
-	          </div>
-          </div>
-<!--           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-phone2"></span> -->
-<!--           		</div>
-          		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://9096562933">9096562933</a></p>
-	          </div>
-          </div> -->
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-paper-plane"></span>
-          		</div>
-          		<h3 class="mb-4">Email Address</h3>
-	            <p><a href="mailto:mayursb25@gmail.com">mayursb25@gmail.com</a></p>
-	          </div>
-          </div>
-          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
-          	<div class="align-self-stretch box p-4 text-center">
-          		<div class="icon d-flex align-items-center justify-content-center">
-          			<span class="icon-globe"></span>
-          		</div>
-          		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="https://drive.google.com/file/d/1xW1aKFP_S9o6Ec_7uN99ftZJfQtdp9HJ/view?usp=drive_link">Resume link</a></p>
-	          </div>
-          </div>
+    <!-- TCS -->
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2021 – 2022</div>
+      <div class="timeline-role">Data Analyst</div>
+      <div class="timeline-company">Tata Consultancy Services</div>
+      <div class="timeline-card">
+        <ul>
+          <li>Spearheaded dynamic Power BI reports and dashboards, leveraging KPIs to boost operational efficiency by 5%.</li>
+          <li>Developed standalone Java applications for batch processes and reports as per finance industry standards.</li>
+          <li>Conducted over 15 SITs and UATs with client and third-party system admins.</li>
+        </ul>
+      </div>
+    </div>
 
-		  <div class="container">
-			<br>
-			<br>
-			<!-- <div class="row justify-content-center">
-				<div class="col-md-7 ftco-animate text-center">
-					<h2>Have a<span> Question?  </span> <a href="https://forms.gle/uLaTShUKXraAvHJ77" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
-				</div>
-			</div> -->
-				<br>
-					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
-					  <li class="ftco-animate normal-txt">Find me on  </li>
-					  <li class="ftco-animate"><a href="https://www.youtube.com/channel/UCESXZF9cS_hm_vHO87zMyqQ"><span class="icon-youtube"></span></a></li>
-					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/mayur-bhoyar/"><span class="icon-linkedin"></span></a></li>  
-					  <!-- <li class="ftco-animate"><a href="https://twitter.com/rishabhnmishra"><span class="icon-twitter"></span></a></li> -->
-					  <!-- <li class="ftco-animate"><a href="https://twitter.com/rishabhnmishra"><span class="icon-facebook"></span></a></li> -->
-				      <li class="ftco-animate"><a href="https://www.instagram.com/mayuur25/"><span class="icon-instagram"></span></a></li>
-					</ul>
-				<br>
-		   </div>
-   </div>
- </section>
+  </div>
+</section>
 
+<!-- EDUCATION -->
+<section id="education" style="background:var(--surface)">
+  <p class="section-label reveal">Education</p>
+  <h2 class="section-title reveal">Academic Background</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal" style="transition-delay:0.1s">
+      <div class="edu-date">2022 – 2023</div>
+      <div class="edu-degree">MSc Advanced Computer Science</div>
+      <div class="edu-school">University of Leeds, United Kingdom · QS Rank #75</div>
+      <div class="edu-grade">Merit</div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-top:1rem;line-height:1.7;">Dissertation: Empirical research comparing deep learning models (U-Net, Attention U-Net, DeepLabv3) for brain tumor identification in MRI scans.</p>
+    </div>
+    <div class="edu-card reveal" style="transition-delay:0.2s">
+      <div class="edu-date">2015 – 2019</div>
+      <div class="edu-degree">Bachelor of Engineering</div>
+      <div class="edu-school">University of Pune, India</div>
+      <div class="edu-grade">First Class</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:3rem" class="reveal">
+    <a href="https://drive.google.com/file/d/1xW1aKFP_S9o6Ec_7uN99ftZJfQtdp9HJ/view?usp=drive_link" class="btn btn-primary" target="_blank">Download Full CV</a>
+  </div>
+</section>
 
- 
-	
-    <footer class="ftco-footer ftco-section">
-		<div class="container">
-		  <div class="row">
-			<div class="col-md-12 text-center">
-  
-			  <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-	<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Projects</p>
+  <h2 class="section-title reveal">Selected Work</h2>
+  <p class="section-desc reveal" style="margin-bottom:0">Data analytics, ML &amp; engineering projects across SQL, Python, Power BI, and Deep Learning.</p>
+  <div class="projects-grid">
 
+    <div class="project-card reveal" style="transition-delay:0.05s">
+      <div class="project-img" style="background-image:url('images/proj_3.jpg')">
+        <span class="project-tag">SQL · Power BI</span>
+      </div>
+      <div class="project-body">
+        <a href="https://github.com/Mayuur25/Adventure-Works" class="project-title" target="_blank">Adventure-Works Data Analysis</a>
+        <p class="project-desc">Analyzed a fictitious company dataset by connecting and shaping data in Power Query, built a relational model and added calculated fields with DAX measures.</p>
+        <a href="https://github.com/Mayuur25/Adventure-Works" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    <div class="project-card reveal" style="transition-delay:0.1s">
+      <div class="project-img" style="background-image:url('images/8.png')">
+        <span class="project-tag">Power BI</span>
+      </div>
+      <div class="project-body">
+        <a href="https://github.com/Mayuur25/Amazon-Sales-Power-BI" class="project-title" target="_blank">Amazon Sales Data Analysis</a>
+        <p class="project-desc">Exploratory data analysis on Amazon sales data using Power BI to surface product insights and sales trends.</p>
+        <a href="https://github.com/Mayuur25/Amazon-Sales-Power-BI" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
 
+    <div class="project-card reveal" style="transition-delay:0.15s">
+      <div class="project-img" style="background-image:url('images/a.jpg')">
+        <span class="project-tag">Python · GeoViz</span>
+      </div>
+      <div class="project-body">
+        <a href="https://github.com/Mayuur25/Agriculture-data-GeoMaps" class="project-title" target="_blank">Agriculture Geo-Heatmap</a>
+        <p class="project-desc">A Python-powered geo-heatmap analyzing agricultural gas emissions across countries worldwide.</p>
+        <a href="https://github.com/Mayuur25/Agriculture-data-GeoMaps" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  
-  <script src="js/main.js"></script>
-    
-  </body>
+    <div class="project-card reveal" style="transition-delay:0.2s">
+      <div class="project-img" style="background-image:url('images/br.png')">
+        <span class="project-tag">Deep Learning</span>
+      </div>
+      <div class="project-body">
+        <a href="https://github.com/Mayuur25/Deep-Learning-Image-Segmentation-Dissertation" class="project-title" target="_blank">Brain Tumor Image Segmentation</a>
+        <p class="project-desc">Empirical comparison of U-Net, Attention U-Net, and DeepLabv3 for brain tumor classification in MRI scans — MSc Dissertation.</p>
+        <a href="https://github.com/Mayuur25/Deep-Learning-Image-Segmentation-Dissertation" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+    <div class="project-card reveal" style="transition-delay:0.25s">
+      <div class="project-img" style="background-image:url('images/am.png')">
+        <span class="project-tag">NLP · ML</span>
+      </div>
+      <div class="project-body">
+        <a href="https://github.com/Mayuur25/Amazon-Review-NLP-ML-Project" class="project-title" target="_blank">Amazon Review NLP &amp; ML</a>
+        <p class="project-desc">Applied NLP and ML models (XGBoost, Decision Tree, Random Forest) on Amazon reviews for sentiment classification.</p>
+        <a href="https://github.com/Mayuur25/Amazon-Review-NLP-ML-Project" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center;margin-top:3rem" class="reveal">
+    <a href="https://github.com/Mayuur25" class="btn btn-outline" target="_blank">All Projects on GitHub →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--surface)">
+  <p class="section-label reveal">Contact</p>
+  <h2 class="section-title reveal">Get In Touch</h2>
+  <p class="section-desc reveal">Reach out for collaborations, opportunities, or just to say hi!</p>
+  <div class="contact-grid">
+    <div class="contact-card reveal" style="transition-delay:0.05s">
+      <span class="contact-icon">📍</span>
+      <div class="contact-label">Location</div>
+      <div class="contact-value">India</div>
+    </div>
+    <div class="contact-card reveal" style="transition-delay:0.1s">
+      <span class="contact-icon">✉️</span>
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:mayursb25@gmail.com">mayursb25@gmail.com</a></div>
+    </div>
+    <div class="contact-card reveal" style="transition-delay:0.15s">
+      <span class="contact-icon">📄</span>
+      <div class="contact-label">Resume</div>
+      <div class="contact-value"><a href="https://drive.google.com/file/d/1xW1aKFP_S9o6Ec_7uN99ftZJfQtdp9HJ/view?usp=drive_link" target="_blank">Download CV</a></div>
+    </div>
+  </div>
+  <div class="social-row reveal">
+    <a href="https://www.youtube.com/channel/UCESXZF9cS_hm_vHO87zMyqQ" class="social-link" target="_blank">▶ YouTube</a>
+    <a href="https://www.linkedin.com/in/mayur-bhoyar/" class="social-link" target="_blank">in LinkedIn</a>
+    <a href="https://github.com/Mayuur25" class="social-link" target="_blank">⌥ GitHub</a>
+    <a href="https://www.instagram.com/mayuur25/" class="social-link" target="_blank">◈ Instagram</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© <span id="year"></span> Mayur Bhoyar</span>
+  <span style="color:var(--border)">Built with care · Data Engineer · India</span>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Typing animation
+  const el = document.getElementById('typing-text');
+  const texts = ['Senior Data Engineer', 'Data Analyst', 'MSc Computer Science', 'YouTuber & Data Enthusiast'];
+  let ti = 0, ci = 0, deleting = false;
+  function type() {
+    const t = texts[ti];
+    if (!deleting) {
+      el.textContent = t.slice(0, ++ci);
+      if (ci === t.length) { deleting = true; setTimeout(type, 2000); return; }
+    } else {
+      el.textContent = t.slice(0, --ci);
+      if (ci === 0) { deleting = false; ti = (ti + 1) % texts.length; }
+    }
+    setTimeout(type, deleting ? 50 : 90);
+  }
+  type();
+
+  // Skill bar animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('#about').forEach(s => observer.observe(s));
+
+  // Reveal on scroll
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Counter animation
+  function animateCounter(el, target) {
+    let current = 0;
+    const step = Math.ceil(target / 50);
+    const interval = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current;
+      if (current >= target) clearInterval(interval);
+    }, 40);
+  }
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.stat-number').forEach(n => {
+          const val = parseInt(n.textContent) || parseInt(n.dataset.val);
+          if (!n.dataset.done) { n.dataset.done = 1; animateCounter(n, parseInt(n.textContent) || 0); }
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stats-bar').forEach(s => counterObs.observe(s));
+</script>
+</body>
 </html>
